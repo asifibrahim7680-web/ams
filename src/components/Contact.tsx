@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, User, Send, CheckCircle2, Phone, MessageSquare, Terminal, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Phone, Send, CheckCircle2, MessageSquare, ExternalLink, Sparkles } from 'lucide-react';
+import { SITE_DATA } from '../data/siteData';
 
 export const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -15,240 +16,170 @@ export const Contact: React.FC = () => {
     }, 4000);
   };
 
-  const studentCoordinators = [
-    {
-      name: 'Aditya Verma',
-      role: 'Overall Student Lead',
-      phone: '+91 98765 43210',
-      whatsapp: '919876543210',
-    },
-    {
-      name: 'Sneha Kulkarni',
-      role: 'Hardware Track Lead',
-      phone: '+91 98765 43211',
-      whatsapp: '919876543211',
-    },
-    {
-      name: 'Rahul Sharma',
-      role: 'Software & Open Domain Lead',
-      phone: '+91 98765 43212',
-      whatsapp: '919876543212',
-    },
-  ];
-
   return (
-    <section id="contact" className="relative py-14 sm:py-20 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="contact" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/20 text-white text-xs font-mono-tech uppercase mb-3 shadow-sm">
-          <Terminal className="w-3.5 h-3.5 text-white" />
-          <span>DIRECT COORDINATION</span>
+      <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/20 text-zinc-300 text-xs font-mono uppercase mb-3 shadow-sm">
+          <Sparkles className="w-3.5 h-3.5 text-white" />
+          <span>{SITE_DATA.contact.label}</span>
         </div>
 
         <h2 className="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight uppercase">
-          CONTACT &amp; <span className="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">VENUE</span>
+          {SITE_DATA.contact.heading}
         </h2>
 
         <p className="text-zinc-300 text-sm sm:text-base mt-3 leading-relaxed">
-          Need assistance with registration, hardware bench requirements, or directions to campus? Reach out directly to our student and faculty leads.
+          {SITE_DATA.contact.sub}
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Student Coordinators & Venue info */}
-        <div className="lg:col-span-7 space-y-6">
-          {/* Student Coordinators Card */}
-          <div className="glass-panel rounded-2xl p-6 border border-white/20 shadow-sm bg-zinc-950/80">
-            <div className="flex items-center gap-2 mb-4">
-              <User className="w-5 h-5 text-white" />
-              <h3 className="font-heading font-black text-lg text-white uppercase">
-                STUDENT COORDINATORS
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {studentCoordinators.map((coord, idx) => (
-                <div
-                  key={idx}
-                  className="p-3.5 rounded-xl bg-zinc-900 border border-white/10 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="font-heading font-bold text-sm text-white">{coord.name}</div>
-                    <div className="text-[11px] text-zinc-400 font-mono-tech mt-0.5">{coord.role}</div>
-                  </div>
-
-                  <div className="mt-3 pt-2 border-t border-white/10 flex items-center gap-2">
-                    <a
-                      href={`tel:${coord.phone}`}
-                      className="p-1.5 rounded-lg bg-zinc-800 hover:bg-white hover:text-black text-white transition flex items-center justify-center flex-1 text-[11px] font-bold"
-                      title="Call Coordinator"
-                    >
-                      <Phone className="w-3 h-3 mr-1" /> Call
-                    </a>
-                    <a
-                      href={`https://wa.me/${coord.whatsapp}?text=Hello%20${encodeURIComponent(coord.name)},%20I%20have%20a%20query%20about%20FROST%20Hacks`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 transition flex items-center justify-center flex-1 text-[11px] font-bold"
-                      title="WhatsApp Coordinator"
-                    >
-                      <MessageSquare className="w-3 h-3 mr-1" /> Chat
-                    </a>
+        {/* Left Column: Channels & Venue */}
+        <div className="lg:col-span-6 space-y-6">
+          {/* Quick Channels Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {SITE_DATA.contact.channels.slice(0, 4).map((ch) => (
+              <div
+                key={ch.key}
+                className="p-5 rounded-2xl bg-zinc-950 border border-white/15 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider block mb-1">
+                    {ch.label}
+                  </span>
+                  <div className="font-heading font-bold text-white text-base truncate">
+                    {ch.value}
                   </div>
                 </div>
-              ))}
-            </div>
+                <div className="mt-3 text-[11px] font-mono text-zinc-400">
+                  {ch.hint}
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Faculty & Venue Details */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* Campus Venue */}
-            <div className="glass-panel rounded-2xl p-5 border border-white/20 shadow-sm flex flex-col justify-between bg-zinc-950/80">
-              <div>
-                <div className="flex items-center gap-2 text-white mb-2">
-                  <MapPin className="w-5 h-5" />
-                  <span className="font-mono-tech text-xs font-bold uppercase tracking-wider">
-                    HACKATHON VENUE
-                  </span>
-                </div>
-                <h4 className="font-heading font-black text-base text-white">
-                  College Campus Tech Arena
-                </h4>
-                <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                  Department of Computer Science &amp; Robotics, Central High-Tech Labs &amp; Maker Spaces.
-                </p>
-                <p className="text-[11px] text-zinc-400 font-mono-tech mt-2">
-                  Autonomous Institution • Main Auditorium &amp; Labs
-                </p>
+          {/* Venue Card */}
+          <div className="p-6 rounded-3xl bg-zinc-950 border border-white/15">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-white/15 flex items-center justify-center text-white shrink-0">
+                <MapPin className="w-5 h-5" />
               </div>
-
-              <div className="mt-4 pt-3 border-t border-white/10">
-                <a
-                  href="https://maps.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:underline"
-                >
-                  <span>View on Google Maps</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+              <div>
+                <span className="font-mono text-xs text-zinc-400 uppercase">Event Venue</span>
+                <h4 className="font-heading font-bold text-base text-white">
+                  {SITE_DATA.college}
+                </h4>
               </div>
             </div>
-
-            {/* Electronic Helpdesk */}
-            <div className="glass-panel rounded-2xl p-5 border border-white/20 shadow-sm flex flex-col justify-between bg-zinc-950/80">
-              <div>
-                <div className="flex items-center gap-2 text-white mb-2">
-                  <Mail className="w-5 h-5" />
-                  <span className="font-mono-tech text-xs font-bold uppercase tracking-wider">
-                    OFFICIAL HELPDESK
-                  </span>
-                </div>
-                <h4 className="font-heading font-black text-base text-white">
-                  Electronic Mail Dispatch
-                </h4>
-                <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                  Send your official inquiries regarding sponsorship, registration verification, or special hardware lab accommodations.
-                </p>
-                <div className="text-xs font-mono-tech font-bold text-white mt-2">
-                  support@frosthacks.tech
-                </div>
-              </div>
-
-              <div className="mt-4 pt-3 border-t border-white/10 text-[11px] text-zinc-500">
-                Turnaround: Under 6 hours
-              </div>
+            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4">
+              {SITE_DATA.campusAddress}
+            </p>
+            <div className="flex flex-wrap gap-2 text-xs font-mono text-zinc-300">
+              <span className="px-3 py-1 rounded-full bg-zinc-900 border border-white/15">
+                Avadi IAF, Chennai
+              </span>
+              <span className="px-3 py-1 rounded-full bg-zinc-900 border border-white/15">
+                Pincode: 600055
+              </span>
+              <span className="px-3 py-1 rounded-full bg-zinc-900 border border-white/15">
+                Tamil Nadu, India
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Query Form */}
-        <div className="lg:col-span-5">
-          <div className="glass-panel rounded-2xl p-6 sm:p-7 border border-white/20 shadow-md bg-zinc-950/90">
-            <div className="flex items-center gap-2 mb-2">
-              <MessageSquare className="w-5 h-5 text-white" />
-              <h3 className="font-heading font-black text-xl text-white">
-                Send Quick Query
-              </h3>
+        {/* Right Column: Direct Message Form */}
+        <div className="lg:col-span-6">
+          <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/20 bg-zinc-950/90 shadow-xl">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-white/15 flex items-center justify-center text-white">
+                <MessageSquare className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-heading font-black text-xl text-white">
+                  Send a Query
+                </h3>
+                <p className="text-xs text-zinc-400">
+                  Direct inquiry to the AMSFROST 2026 organizing desk
+                </p>
+              </div>
             </div>
-            <p className="text-xs text-zinc-400 mb-5">
-              Transmit a direct message to our coordinator desk.
-            </p>
 
             {submitted ? (
-              <div className="p-6 rounded-xl bg-zinc-900 border border-white/30 text-center my-6">
-                <CheckCircle2 className="w-10 h-10 text-white mx-auto mb-2" />
-                <h4 className="font-heading font-bold text-base text-white">
-                  Transmission Dispatched!
+              <div className="py-10 text-center space-y-3">
+                <CheckCircle2 className="w-12 h-12 text-white mx-auto" />
+                <h4 className="font-heading font-bold text-lg text-white">
+                  Message Sent Successfully
                 </h4>
-                <p className="text-xs text-zinc-400 mt-1">
-                  Your query has been logged. A student coordinator will get back to you shortly.
+                <p className="text-xs text-zinc-400 max-w-sm mx-auto">
+                  Thank you! Our student coordinating team will respond to your registered email address shortly.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-3.5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="font-mono-tech text-[11px] text-zinc-400 font-bold block mb-1">
-                    Your Name
+                  <label className="block text-xs font-mono text-zinc-300 mb-1">
+                    Your Name *
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Priyanshu Das"
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-900 border border-white/20 text-white placeholder-zinc-500 focus:outline-none focus:border-white text-xs font-sans shadow-sm"
+                    placeholder="e.g. Rahul Sharma"
+                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/15 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="font-mono-tech text-[11px] text-zinc-400 font-bold block mb-1">
-                      College Email
+                    <label className="block text-xs font-mono text-zinc-300 mb-1">
+                      Email Address *
                     </label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="priyanshu@college.edu"
-                      className="w-full px-3.5 py-2 rounded-xl bg-zinc-900 border border-white/20 text-white placeholder-zinc-500 focus:outline-none focus:border-white text-xs font-sans shadow-sm"
+                      placeholder="student@college.edu"
+                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/15 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition"
                     />
                   </div>
                   <div>
-                    <label className="font-mono-tech text-[11px] text-zinc-400 font-bold block mb-1">
-                      Phone Number
+                    <label className="block text-xs font-mono text-zinc-300 mb-1">
+                      Phone / WhatsApp
                     </label>
                     <input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+91 98765 43210"
-                      className="w-full px-3.5 py-2 rounded-xl bg-zinc-900 border border-white/20 text-white placeholder-zinc-500 focus:outline-none focus:border-white text-xs font-sans shadow-sm"
+                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/15 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="font-mono-tech text-[11px] text-zinc-400 font-bold block mb-1">
-                    Message / Question
+                  <label className="block text-xs font-mono text-zinc-300 mb-1">
+                    Your Query / Message *
                   </label>
                   <textarea
-                    rows={3}
                     required
+                    rows={4}
                     value={formData.query}
                     onChange={(e) => setFormData({ ...formData, query: e.target.value })}
-                    placeholder="Ask about problem statements, hardware benches, arrival time..."
-                    className="w-full px-3.5 py-2 rounded-xl bg-zinc-900 border border-white/20 text-white placeholder-zinc-500 focus:outline-none focus:border-white text-xs font-sans resize-none shadow-sm"
+                    placeholder="Ask regarding team composition, competition tracks, hardware bench guidelines, or campus directions..."
+                    className="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-white/15 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full btn-neon-primary py-3 rounded-xl font-mono-tech text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 text-black bg-white"
+                  className="w-full btn-neon-primary py-3 px-6 rounded-xl font-bold text-xs text-black flex items-center justify-center gap-2 uppercase tracking-wider shadow-lg transition-all"
                 >
+                  <span>Transmit Query</span>
                   <Send className="w-3.5 h-3.5" />
-                  <span>DISPATCH QUERY</span>
                 </button>
               </form>
             )}

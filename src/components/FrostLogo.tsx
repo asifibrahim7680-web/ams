@@ -54,13 +54,13 @@ export const FrostLogo: React.FC<FrostLogoProps> = ({
       {showText && (
         <div className="flex flex-col leading-tight">
           <div className="flex items-center text-lg md:text-xl font-black tracking-tight text-white">
-            <span className="font-heading tracking-wider">FROST</span>
-            <span className="text-white font-heading ml-1 drop-shadow-[0_1px_6px_rgba(255,255,255,0.4)]">
-              HACKS
+            <span className="font-heading tracking-wider">AMSFROST</span>
+            <span className="text-zinc-400 font-mono text-sm ml-1.5 font-semibold">
+              2026
             </span>
           </div>
           <span className="text-[10px] text-zinc-400 font-mono-tech tracking-wider uppercase font-semibold hidden sm:inline-block">
-            One-Day Mega Hackathon
+            Code. Build. Innovate.
           </span>
         </div>
       )}

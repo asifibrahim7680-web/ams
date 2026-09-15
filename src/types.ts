@@ -1,5 +1,6 @@
-export type TrackType = 'Software' | 'Hardware' | 'Open Domain';
-export type OpenSubType = 'Open Software' | 'Open Hardware';
+export type CompetitionId = 'crack-the-code' | 'hackathon' | 'techforge';
+export type TrackType = 'Crack the Code' | 'Hackathon' | 'TechForge' | 'Software' | 'Hardware' | 'Open Domain';
+export type OpenSubType = 'Open Software' | 'Open Hardware' | 'Solo' | 'Duo' | '';
 export type RegistrationStatus = 'PENDING' | 'VERIFIED' | 'REJECTED';
 export type PaymentStatus = 'PENDING' | 'PAID';
 
@@ -7,9 +8,9 @@ export interface TeamMember {
   id?: string;
   team_id?: string;
   name: string;
-  email: string;
-  department: string;
-  college_id: string;
+  email?: string;
+  department?: string;
+  college_id?: string;
   created_at?: string;
 }
 
@@ -19,16 +20,22 @@ export interface Team {
   team_name: string;
   college_name: string;
   department: string;
+  year?: string;
+  student_id?: string;
   leader_name: string;
   leader_email: string;
   leader_phone: string;
   track: TrackType;
+  competition_id?: CompetitionId;
   sub_track?: OpenSubType | '';
   project_title: string;
   project_description: string;
-  problem_statement_id: string;
+  problem_statement_id?: string;
   created_at: string;
   members?: TeamMember[];
+  member_count?: number;
+  total_fee?: number;
+  fee_per_person?: number;
   registration_status: RegistrationStatus;
   payment_status: PaymentStatus;
   github_repo?: string;

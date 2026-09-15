@@ -55,13 +55,20 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
   const [projectTitle, setProjectTitle] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [problemStatementId, setProblemStatementId] = useState(
-    preselectedTrack === 'Software' ? 'PS-SOFT-01' : preselectedTrack === 'Hardware' ? 'PS-HARD-01' : 'OPEN-DOMAIN-CUSTOM'
+    preselectedTrack === 'Crack the Code' ? 'PS-CODE-01' : preselectedTrack === 'TechForge' || preselectedTrack === 'Hardware' ? 'PS-HARD-01' : 'PS-SOFT-01'
   );
 
-  // Team Members State (2 to 5 members: leader is first member)
+  // Dynamic limits based on competition
+  const isCrackTheCode = track === 'Crack the Code';
+  const isTechForge = track === 'TechForge';
+  const feePerHead = isCrackTheCode ? 100 : 200;
+  const minMembers = isCrackTheCode ? 1 : 2;
+  const maxMembers = isCrackTheCode ? 2 : isTechForge ? 4 : 5;
+
+  // Team Members State: leader is first member
   const [members, setMembers] = useState<TeamMember[]>([
     { name: '', email: '', department: '', college_id: '' }, // Leader
-    { name: '', email: '', department: '', college_id: '' }, // Member 2
+    ...(preselectedTrack === 'Crack the Code' ? [] : [{ name: '', email: '', department: '', college_id: '' }]),
   ]);
 
   const [agreementChecked, setAgreementChecked] = useState(false);
@@ -80,12 +87,12 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
   };
 
   const handleAddMember = () => {
-    if (members.length >= 5) return;
+    if (members.length >= maxMembers) return;
     setMembers([...members, { name: '', email: '', department: '', college_id: '' }]);
   };
 
   const handleRemoveMember = (index: number) => {
-    if (members.length <= 2) return;
+    if (members.length <= minMembers) return;
     if (index === 0) return; // Cannot remove team leader
     setMembers(members.filter((_, i) => i !== index));
   };
@@ -196,7 +203,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
     }
   };
 
-  const totalFee = members.length * 200;
+  const totalFee = members.length * feePerHead;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-3 sm:p-4 overflow-y-auto">
@@ -204,23 +211,23 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
         {/* Header Ribbon */}
         <div className="p-4 sm:p-5 border-b border-white/10 bg-zinc-900 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/15 flex items-center justify-center text-white">
-              <Layers className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/15 flex items-center justify-center text-white font-mono font-bold">
+              AMS
             </div>
             <div>
               <h3 className="font-heading font-black text-lg text-white">
-                FROST Hacks Registration Portal
+                AMSFROST 2026 Registration
               </h3>
-              <p className="font-mono-tech text-xs text-zinc-400">
-                Step {step} of 5 • One-Day National Hackathon
+              <p className="font-mono text-xs text-zinc-400">
+                Step {step} of 5 • Aalim Muhammed Salegh College of Engineering
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 transition"
+            className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 text-zinc-400 hover:text-white flex items-center justify-center transition"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
@@ -282,27 +289,29 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
 
               <p className="text-xs text-zinc-400 max-w-md mx-auto">
                 Congratulations! Your team <strong>{createdTeam.team_name}</strong> has been registered for{' '}
-                <strong>FROST Hacks</strong>.
+                <strong>AMSFROST 2026</strong>.
               </p>
 
               <div className="p-4 rounded-2xl bg-zinc-900 border border-white/15 max-w-sm mx-auto text-left space-y-2">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono-tech text-zinc-400">TEAM ID:</span>
-                  <span className="font-mono-tech font-bold text-base text-white">
+                  <span className="font-mono text-zinc-400">TEAM ID:</span>
+                  <span className="font-mono font-bold text-base text-white">
                     {createdTeam.team_id}
                   </span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono-tech text-zinc-400">TRACK:</span>
-                  <span className="font-mono-tech font-bold text-white">{createdTeam.track}</span>
+                  <span className="font-mono text-zinc-400">EVENT / TRACK:</span>
+                  <span className="font-mono font-bold text-white">{createdTeam.track}</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono-tech text-zinc-400">TOTAL MEMBERS:</span>
-                  <span className="font-mono-tech font-bold text-white">{createdTeam.members.length} Members</span>
+                  <span className="font-mono text-zinc-400">TOTAL PARTICIPANTS:</span>
+                  <span className="font-mono font-bold text-white">{createdTeam.members.length} Members</span>
                 </div>
                 <div className="flex justify-between items-center text-xs pt-2 border-t border-white/10">
-                  <span className="font-mono-tech text-zinc-400">FEE AMOUNT:</span>
-                  <span className="font-mono-tech font-bold text-white">₹{createdTeam.members.length * 200} (₹200/head)</span>
+                  <span className="font-mono text-zinc-400">FEE AMOUNT:</span>
+                  <span className="font-mono font-bold text-white">
+                    ₹{createdTeam.members.length * (createdTeam.track === 'Crack the Code' ? 100 : 200)} (₹{createdTeam.track === 'Crack the Code' ? 100 : 200}/head)
+                  </span>
                 </div>
               </div>
 
@@ -422,128 +431,113 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                 </div>
               )}
 
-              {/* STEP 2: TRACK SELECTION */}
+              {/* STEP 2: COMPETITION SELECTION */}
               {step === 2 && (
                 <div className="space-y-4">
                   <div className="border-b border-white/10 pb-2 mb-4">
                     <h4 className="font-heading font-black text-lg text-white">
-                      Select Competition Track
+                      Select Competition Challenge
                     </h4>
                     <p className="text-xs text-zinc-400">
-                      Choose between Software, Hardware, or Open Domain.
+                      Choose which AMSFROST 2026 event your squad is competing in.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 gap-3.5">
-                    {/* Software */}
+                    {/* Crack the Code */}
                     <div
-                      onClick={() => setTrack('Software')}
+                      onClick={() => setTrack('Crack the Code')}
                       className={`p-4 rounded-2xl border cursor-pointer transition-all ${
-                        track === 'Software'
+                        track === 'Crack the Code'
                           ? 'border-white bg-zinc-900 shadow-md'
                           : 'border-white/15 bg-zinc-950 hover:bg-zinc-900/50'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <Code2 className="w-6 h-6 text-white" />
-                          <div>
-                            <div className="font-heading font-black text-base text-white">
-                              SOFTWARE TRACK
-                            </div>
-                            <div className="text-xs text-zinc-400">
-                              Web apps, mobile solutions, AI models, distributed databases, cloud APIs.
-                            </div>
+                          <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/15 flex items-center justify-center text-white">
+                            <Code2 className="w-5 h-5" />
                           </div>
-                        </div>
-                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${track === 'Software' ? 'border-white bg-white text-black' : 'border-zinc-600'}`}>
-                          {track === 'Software' && <Check className="w-3.5 h-3.5" />}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Hardware */}
-                    <div
-                      onClick={() => setTrack('Hardware')}
-                      className={`p-4 rounded-2xl border cursor-pointer transition-all ${
-                        track === 'Hardware'
-                          ? 'border-white bg-zinc-900 shadow-md'
-                          : 'border-white/15 bg-zinc-950 hover:bg-zinc-900/50'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <Cpu className="w-6 h-6 text-white" />
-                          <div>
-                            <div className="font-heading font-black text-base text-white">
-                              HARDWARE TRACK
-                            </div>
-                            <div className="text-xs text-zinc-400">
-                              Embedded microcontrollers, sensor telemetry, IoT nodes, robotics, circuit hardware.
-                            </div>
-                          </div>
-                        </div>
-                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${track === 'Hardware' ? 'border-white bg-white text-black' : 'border-zinc-600'}`}>
-                          {track === 'Hardware' && <Check className="w-3.5 h-3.5" />}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Open Domain */}
-                    <div
-                      onClick={() => setTrack('Open Domain')}
-                      className={`p-4 rounded-2xl border cursor-pointer transition-all ${
-                        track === 'Open Domain'
-                          ? 'border-white bg-zinc-900 shadow-md'
-                          : 'border-white/15 bg-zinc-950 hover:bg-zinc-900/50'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <Globe className="w-6 h-6 text-white" />
                           <div>
                             <div className="font-heading font-black text-base text-white flex items-center gap-2">
-                              <span>OPEN DOMAIN TRACK</span>
-                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white text-black font-mono-tech font-bold">
-                                FLAGSHIP
+                              <span>CRACK THE CODE</span>
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white text-black font-mono font-bold">
+                                ₹100 / HEAD
                               </span>
                             </div>
                             <div className="text-xs text-zinc-400">
-                              Open Innovation with NO fixed problem statement. Explicitly supports BOTH Software &amp; Hardware.
+                              Coding &amp; Debugging • 1–2 Members (Solo or Duo) • 2 Rounds
                             </div>
                           </div>
                         </div>
-                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${track === 'Open Domain' ? 'border-white bg-white text-black' : 'border-zinc-600'}`}>
-                          {track === 'Open Domain' && <Check className="w-3.5 h-3.5" />}
+                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${track === 'Crack the Code' ? 'border-white bg-white text-black' : 'border-zinc-600'}`}>
+                          {track === 'Crack the Code' && <Check className="w-3.5 h-3.5" />}
                         </div>
                       </div>
+                    </div>
 
-                      {track === 'Open Domain' && (
-                        <div className="mt-4 pt-3 border-t border-white/10">
-                          <label className="font-mono-tech text-[11px] text-zinc-400 font-bold block mb-2">
-                            Select Open Domain Path:
-                          </label>
-                          <div className="grid grid-cols-2 gap-2">
-                            {(['Open Software', 'Open Hardware'] as OpenSubType[]).map((st) => (
-                              <button
-                                type="button"
-                                key={st}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setSubTrack(st);
-                                }}
-                                className={`py-2 px-3 rounded-xl text-xs font-mono-tech font-bold border transition ${
-                                  subTrack === st
-                                    ? 'bg-white text-black border-white'
-                                    : 'bg-zinc-900 text-zinc-300 border-white/10 hover:bg-zinc-800'
-                                }`}
-                              >
-                                {st === 'Open Software' ? '⚡ Open Software' : '🛠️ Open Hardware'}
-                              </button>
-                            ))}
+                    {/* Hackathon */}
+                    <div
+                      onClick={() => setTrack('Hackathon')}
+                      className={`p-4 rounded-2xl border cursor-pointer transition-all ${
+                        track === 'Hackathon' || track === 'Software' || track === 'Open Domain'
+                          ? 'border-white bg-zinc-900 shadow-md'
+                          : 'border-white/15 bg-zinc-950 hover:bg-zinc-900/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/15 flex items-center justify-center text-white">
+                            <Globe className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="font-heading font-black text-base text-white flex items-center gap-2">
+                              <span>HACKATHON</span>
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white text-black font-mono font-bold">
+                                ₹200 / HEAD
+                              </span>
+                            </div>
+                            <div className="text-xs text-zinc-400">
+                              Software Innovation • 2–5 Members • Open Domain &amp; Track Prompts
+                            </div>
                           </div>
                         </div>
-                      )}
+                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${track === 'Hackathon' || track === 'Software' || track === 'Open Domain' ? 'border-white bg-white text-black' : 'border-zinc-600'}`}>
+                          {(track === 'Hackathon' || track === 'Software' || track === 'Open Domain') && <Check className="w-3.5 h-3.5" />}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* TechForge */}
+                    <div
+                      onClick={() => setTrack('TechForge')}
+                      className={`p-4 rounded-2xl border cursor-pointer transition-all ${
+                        track === 'TechForge' || track === 'Hardware'
+                          ? 'border-white bg-zinc-900 shadow-md'
+                          : 'border-white/15 bg-zinc-950 hover:bg-zinc-900/50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/15 flex items-center justify-center text-white">
+                            <Cpu className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="font-heading font-black text-base text-white flex items-center gap-2">
+                              <span>TECHFORGE</span>
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-white text-black font-mono font-bold">
+                                ₹200 / HEAD
+                              </span>
+                            </div>
+                            <div className="text-xs text-zinc-400">
+                              Hardware &amp; Circuit Systems • 2–4 Members • Workbench Allocated
+                            </div>
+                          </div>
+                        </div>
+                        <div className={`w-5 h-5 rounded-full border flex items-center justify-center ${track === 'TechForge' || track === 'Hardware' ? 'border-white bg-white text-black' : 'border-zinc-600'}`}>
+                          {(track === 'TechForge' || track === 'Hardware') && <Check className="w-3.5 h-3.5" />}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -702,8 +696,8 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                       <span className="font-bold text-white">{members.length} Members</span>
                     </div>
                     <div className="flex justify-between pt-2 border-t border-white/10 text-sm">
-                      <span className="font-mono-tech font-bold text-zinc-400">Registration Fee:</span>
-                      <span className="font-mono-tech font-black text-white">₹{totalFee} (₹200 / head)</span>
+                      <span className="font-mono font-bold text-zinc-400">Registration Fee:</span>
+                      <span className="font-mono font-black text-white">₹{totalFee} (₹{feePerHead} / head)</span>
                     </div>
                   </div>
 
@@ -715,7 +709,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                       className="mt-0.5 w-4 h-4 rounded text-black bg-zinc-800 border-white/20 focus:ring-white"
                     />
                     <span className="text-xs text-zinc-300 leading-relaxed">
-                      I declare that all members are bona fide college students, and our team agrees to adhere to FROST Hacks hackathon rules, academic honesty, and code of conduct.
+                      I declare that all members are bona fide college students, and our team agrees to adhere to AMSFROST 2026 event rules, academic honesty, and code of conduct.
                     </span>
                   </label>
                 </div>

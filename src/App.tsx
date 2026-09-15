@@ -13,6 +13,7 @@ import { Evaluation } from './components/Evaluation';
 import { Rules } from './components/Rules';
 import { RegistrationCTA } from './components/RegistrationCTA';
 import { Faq } from './components/Faq';
+import { Patrons } from './components/Patrons';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { RegistrationModal } from './components/RegistrationModal';
@@ -70,6 +71,7 @@ export default function App() {
         <Rules />
         <RegistrationCTA onOpenRegister={() => handleOpenRegister()} />
         <Faq onOpenRegister={() => handleOpenRegister()} />
+        <Patrons />
         <Contact />
       </main>
 

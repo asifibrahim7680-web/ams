@@ -1,5 +1,7 @@
-import React from 'react';
-import { Code2, Cpu, Globe, ArrowRight, FileText, Sparkles, CheckCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Sparkles, CheckCircle, Eye } from 'lucide-react';
+import { COMPETITIONS, Competition } from '../data/siteData';
+import { ChallengeDetailModal } from './ChallengeDetailModal';
 import { TrackType } from '../types';
 
 interface TracksProps {
@@ -7,197 +9,139 @@ interface TracksProps {
 }
 
 export const Tracks: React.FC<TracksProps> = ({ onSelectTrackForRegistration }) => {
-  const tracksData = [
-    {
-      id: 'software',
-      title: 'SOFTWARE TRACK',
-      tagline: 'Code • Build • Solve',
-      trackType: 'Software' as TrackType,
-      icon: Code2,
-      accent: 'from-white to-zinc-500',
-      borderGlow: 'hover:border-white/40 shadow-md',
-      iconColor: 'text-white',
-      description:
-        'Build innovative software solutions using modern programming languages, web & mobile applications, Artificial Intelligence, cloud microservices, or data-driven systems solving real-world challenges.',
-      eligibleDomains: 'Web Apps, Mobile Apps, Cloud Services, AI/ML, DevOps, FinTech, EdTech',
-      examples: 'Intelligent triage dashboards, offline-first health apps, automated financial compliance tools, algorithmic civic helpers',
-      technologies: [
-        'React / Next.js',
-        'Python / FastAPI',
-        'TypeScript / Node.js',
-        'PostgreSQL / Supabase',
-        'PyTorch / Gemini API',
-      ],
-      problemAnchor: '#problems',
-    },
-    {
-      id: 'hardware',
-      title: 'HARDWARE TRACK',
-      tagline: 'Design • Innovate • Impact',
-      trackType: 'Hardware' as TrackType,
-      icon: Cpu,
-      accent: 'from-zinc-300 to-zinc-600',
-      borderGlow: 'hover:border-white/40 shadow-md',
-      iconColor: 'text-white',
-      description:
-        'Design and prototype physical computing architectures, embedded systems, IoT sensor arrays, microcontrollers, or robotics solving tangible real-world physical and industrial challenges.',
-      eligibleDomains: 'IoT & Telemetry, Embedded Systems, Robotics & Automation, Smart Hardware, Wearables',
-      examples: 'Autonomous warehouse robots, agricultural soil telemetry nodes, smart grid power optimizers, wearable patient vitals monitors',
-      technologies: [
-        'ESP32 / Arduino / STM32',
-        'Raspberry Pi / Jetson',
-        'MQTT / LoRaWAN',
-        'C / C++ Embedded',
-        'Sensor & Actuator Arrays',
-      ],
-      problemAnchor: '#problems',
-    },
-    {
-      id: 'open',
-      title: 'OPEN DOMAIN TRACK',
-      tagline: 'Hybrid • Software + Hardware Innovation',
-      trackType: 'Open Domain' as TrackType,
-      icon: Globe,
-      accent: 'from-white via-zinc-400 to-zinc-700',
-      borderGlow: 'border-2 border-white/35 shadow-xl',
-      iconColor: 'text-white',
-      description:
-        'Bring your own visionary idea! Open Domain eliminates restrictive boundaries and explicitly supports BOTH pure Software, pure Hardware, or cutting-edge Hybrid prototypes.',
-      eligibleDomains: 'Open Software, Open Hardware, Cross-Disciplinary Cyber-Physical Systems, CleanTech',
-      examples: 'AI-guided camera sorting bin, drone delivery telemetry with web dashboard, smart prosthesis with mobile telemetry, green energy analytics',
-      technologies: [
-        '⚡ Open Software Stacks',
-        '🛠️ Open Hardware Assemblies',
-        '🤖 Hybrid Cyber-Physical Systems',
-        '🌱 Assistive & CleanTech',
-        '💡 Unconstrained Innovation',
-      ],
-      isFlagship: true,
-      problemAnchor: '#problems',
-    },
-  ];
+  const [selectedCompetition, setSelectedCompetition] = useState<Competition | null>(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+
+  const handleOpenDetail = (comp: Competition) => {
+    setSelectedCompetition(comp);
+    setIsDetailOpen(true);
+  };
+
+  const handleRegisterFromModal = (comp: Competition) => {
+    // Map to TrackType
+    let track: TrackType = 'Software';
+    if (comp.id === 'crack-the-code') track = 'Crack the Code';
+    else if (comp.id === 'hackathon') track = 'Hackathon';
+    else if (comp.id === 'techforge') track = 'TechForge';
+    onSelectTrackForRegistration(track);
+  };
 
   return (
-    <section id="tracks" className="relative py-14 sm:py-20 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      {/* Section Header */}
+    <section id="events" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div id="tracks" className="absolute -top-24"></div>
+
+      {/* Section Header matching reference site */}
       <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/20 text-white text-xs font-mono-tech uppercase mb-3 shadow-sm">
-          <Code2 className="w-3.5 h-3.5 text-white" />
-          <span>DUAL &amp; OPEN COMPETITION TRACKS</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/20 text-zinc-300 text-xs font-mono uppercase mb-3 shadow-sm">
+          <Sparkles className="w-3.5 h-3.5 text-white" />
+          <span>02 / EVENTS</span>
         </div>
 
         <h2 className="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight uppercase">
-          CHOOSE YOUR <span className="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">TRACK</span>
+          Choose your <span className="text-zinc-400">challenge.</span>
         </h2>
 
         <p className="text-zinc-300 text-sm sm:text-base mt-3 leading-relaxed">
-          Whether you excel at code syntax, circuit synthesis, or novel interdisciplinary solutions, FROST Hacks has a dedicated track for your team to build and shine.
+          Three ways to compete. Select a track to view stages, scoring criteria, and registration details.
         </p>
-
-        {/* Problem Statements Action Link Button */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="#problems"
-            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-zinc-900 hover:bg-zinc-800 border border-white/20 text-white text-xs sm:text-sm font-bold tracking-wider transition-all duration-300 shadow-md hover:scale-105 group"
-          >
-            <FileText className="w-4 h-4 text-white group-hover:rotate-6 transition-transform" />
-            <span>VIEW PROBLEM STATEMENTS</span>
-            <ArrowRight className="w-4 h-4 text-white" />
-          </a>
-        </div>
       </div>
 
-      {/* 3 Tracks Cards Grid */}
+      {/* 3 Competitions Cards Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
-        {tracksData.map((track) => {
-          const IconComp = track.icon;
-          return (
-            <div
-              key={track.id}
-              className={`glass-panel rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group border border-white/15 relative overflow-hidden ${track.borderGlow}`}
-            >
-              {/* Top Accent Gradient Stripe */}
-              <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${track.accent}`}></div>
+        {COMPETITIONS.map((comp) => (
+          <div
+            key={comp.id}
+            className="glass-panel rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group border border-white/15 relative overflow-hidden bg-zinc-950/70"
+          >
+            {/* Top Accent Line */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-white via-zinc-400 to-zinc-700"></div>
 
-              <div>
-                {/* Icon & Badge Header */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-14 h-14 rounded-2xl bg-zinc-900 border border-white/15 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
-                    <IconComp className={`w-7 h-7 ${track.iconColor}`} />
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-zinc-900 border border-white/15 text-xs font-mono-tech text-zinc-300 font-bold tracking-wider">
-                    {track.tagline}
+            <div>
+              {/* Header: Symbol + Index & Fee */}
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-14 h-14 rounded-2xl bg-zinc-900 border border-white/15 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md font-mono text-xl text-white font-bold">
+                  {comp.symbol}
+                </div>
+                <div className="flex flex-col items-end gap-1">
+                  <span className="text-xs font-mono text-zinc-400">{comp.index} / 03</span>
+                  <span className="px-3 py-1 rounded-full bg-zinc-900 border border-white/20 text-xs font-mono text-zinc-200 font-bold">
+                    {comp.fee}
                   </span>
                 </div>
-
-                {/* Track Title */}
-                <h3 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight">
-                  {track.title}
-                </h3>
-
-                {track.isFlagship && (
-                  <div className="mt-2 inline-flex items-center gap-1.5 text-xs font-mono-tech font-bold text-white bg-zinc-800 px-2.5 py-1 rounded-md border border-white/15">
-                    <Sparkles className="w-3.5 h-3.5 text-white" />
-                    <span>SUPPORTS BOTH SOFTWARE &amp; HARDWARE</span>
-                  </div>
-                )}
-
-                <p className="text-zinc-400 text-sm mt-3 leading-relaxed">
-                  {track.description}
-                </p>
-
-                {/* Eligible Domains & Examples */}
-                <div className="mt-4 space-y-2 pt-3 border-t border-white/10 text-xs">
-                  <div>
-                    <span className="font-mono-tech text-[11px] font-bold text-zinc-400 uppercase">Eligible Domains: </span>
-                    <span className="text-zinc-200">{track.eligibleDomains}</span>
-                  </div>
-                  <div>
-                    <span className="font-mono-tech text-[11px] font-bold text-zinc-400 uppercase">Examples: </span>
-                    <span className="text-zinc-400 italic">{track.examples}</span>
-                  </div>
-                </div>
-
-                {/* Suggested Tech & Focus Areas */}
-                <div className="mt-4 pt-3 border-t border-white/10">
-                  <div className="text-xs font-mono-tech text-zinc-400 uppercase tracking-wider mb-2 font-bold">
-                    SUGGESTED TECH STACK
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {track.technologies.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-2 py-0.5 rounded-md bg-zinc-900 border border-white/10 text-zinc-300 text-[11px] font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
               </div>
 
-              {/* Card Actions */}
-              <div className="mt-6 pt-4 border-t border-white/10 space-y-2">
-                <button
-                  onClick={() => onSelectTrackForRegistration(track.trackType)}
-                  className="w-full btn-neon-primary py-3 px-4 rounded-xl font-bold text-xs text-black flex items-center justify-center gap-2 uppercase tracking-wider shadow-md transition-all hover:scale-[1.02]"
-                >
-                  <span>Register for this Track</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+              {/* Category & Name */}
+              <div className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
+                {comp.category}
+              </div>
+              <h3 className="font-heading font-black text-2xl sm:text-3xl text-white tracking-tight">
+                {comp.name}
+              </h3>
+              <div className="text-xs font-mono text-zinc-300 mt-1 font-semibold">
+                Team Size: {comp.teamSize}
+              </div>
 
-                <a
-                  href={track.problemAnchor}
-                  className="w-full py-2 px-3 rounded-xl font-bold text-[11px] text-zinc-400 hover:text-white hover:bg-zinc-900 flex items-center justify-center gap-1.5 uppercase tracking-wider transition-all"
-                >
-                  <FileText className="w-3 h-3 text-white" />
-                  <span>Check Track Problems</span>
-                </a>
+              {/* Tagline & Description */}
+              <div className="mt-3 p-3 rounded-xl bg-zinc-900/50 border border-white/10 text-xs text-zinc-300 font-medium italic">
+                "{comp.tagline}"
+              </div>
+              <p className="text-zinc-400 text-xs sm:text-sm mt-3 leading-relaxed">
+                {comp.description}
+              </p>
+
+              {/* Stages Pill Strip */}
+              <div className="mt-5 pt-4 border-t border-white/10">
+                <div className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider mb-2 font-bold">
+                  STAGES &amp; STRUCTURE
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {comp.stages.map((st, i) => (
+                    <span
+                      key={i}
+                      className="px-2.5 py-1 rounded-md bg-zinc-900 border border-white/10 text-zinc-300 text-[11px] font-mono"
+                    >
+                      {i + 1}. {st}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          );
-        })}
+
+            {/* Card Actions */}
+            <div className="mt-6 pt-5 border-t border-white/10 space-y-2.5">
+              <button
+                onClick={() => handleOpenDetail(comp)}
+                className="w-full py-2.5 px-4 rounded-xl border border-white/20 hover:border-white/40 text-white font-mono text-xs flex items-center justify-center gap-2 transition bg-zinc-900 hover:bg-zinc-800"
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>View Challenge</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  let track: TrackType = 'Software';
+                  if (comp.id === 'crack-the-code') track = 'Crack the Code';
+                  else if (comp.id === 'hackathon') track = 'Hackathon';
+                  else if (comp.id === 'techforge') track = 'TechForge';
+                  onSelectTrackForRegistration(track);
+                }}
+                className="w-full btn-neon-primary py-3 px-4 rounded-xl font-bold text-xs text-black flex items-center justify-center gap-2 uppercase tracking-wider shadow-md transition-all hover:scale-[1.02]"
+              >
+                <span>Register for {comp.name}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
+
+      {/* Challenge Detail Modal */}
+      <ChallengeDetailModal
+        competition={selectedCompetition}
+        isOpen={isDetailOpen}
+        onClose={() => setIsDetailOpen(false)}
+        onRegister={handleRegisterFromModal}
+      />
     </section>
   );
 };

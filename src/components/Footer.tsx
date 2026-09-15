@@ -55,50 +55,51 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Brand Col */}
           <div className="md:col-span-5 space-y-4">
             <FrostLogo size={40} />
-            <p className="text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
-              FROST Hacks is a national-level, high-octane one-day tech hackathon uniting student coders, hardware architects, and creative problem solvers. Compete across Software, Hardware, and Open Domain tracks for ₹25,000 in total bounties.
+            <p className="text-xs sm:text-sm text-zinc-300 max-w-md leading-relaxed">
+              AMSFROST 2026 — Code. Build. Innovate. A national inter-college technical competition hosted by Aalim Muhammed Salegh College of Engineering on 01 October 2026 featuring Crack the Code, Hackathon, and TechForge.
             </p>
-            <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-mono-tech">
-              <span className="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-zinc-300">
-                ONE-DAY TECH MARATHON
+            <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] font-mono">
+              <span className="px-2.5 py-1 rounded-full bg-zinc-900 border border-white/15 text-zinc-300">
+                01 OCTOBER 2026
               </span>
-              <span className="px-2.5 py-1 rounded bg-zinc-900 border border-white/10 text-white font-bold">
-                NATIONAL INTER-COLLEGE
+              <span className="px-2.5 py-1 rounded-full bg-zinc-900 border border-white/15 text-white font-bold">
+                CHENNAI, INDIA
               </span>
             </div>
           </div>
 
           {/* Quick Nav */}
           <div className="md:col-span-3">
-            <h4 className="font-mono-tech text-xs text-white uppercase tracking-widest font-bold mb-3">
+            <h4 className="font-mono text-xs text-white uppercase tracking-widest font-bold mb-3">
               EXPLORE SECTIONS
             </h4>
-            <ul className="space-y-2 text-xs font-mono-tech text-zinc-400">
-              <li><a href="#home" className="hover:text-white transition">01. Home &amp; Kickoff</a></li>
-              <li><a href="#about" className="hover:text-white transition">02. About &amp; Ecosystem</a></li>
-              <li><a href="#tracks" className="hover:text-white transition">03. Dual &amp; Open Tracks</a></li>
-              <li><a href="#problems" className="hover:text-white transition">04. Problem Statements</a></li>
-              <li><a href="#timeline" className="hover:text-white transition">05. 14-Stage Schedule</a></li>
-              <li><a href="#prizes" className="hover:text-white transition">06. ₹25K Prize Pool</a></li>
-              <li><a href="#details" className="hover:text-white transition">07. Participation Details</a></li>
+            <ul className="space-y-2 text-xs font-mono text-zinc-400">
+              <li><a href="#about" className="hover:text-white transition">01. About Event</a></li>
+              <li><a href="#tracks" className="hover:text-white transition">02. Competitions (Events)</a></li>
+              <li><a href="#why" className="hover:text-white transition">03. The Experience</a></li>
+              <li><a href="#timeline" className="hover:text-white transition">04. Event Timeline</a></li>
+              <li><a href="#prizes" className="hover:text-white transition">05. Recognition &amp; Awards</a></li>
+              <li><a href="#rules" className="hover:text-white transition">06. Rules &amp; Regulations</a></li>
+              <li><a href="#evaluation" className="hover:text-white transition">07. Evaluation Criteria</a></li>
               <li><a href="#faq" className="hover:text-white transition">08. Knowledge Base (FAQ)</a></li>
-              <li><a href="#contact" className="hover:text-white transition">09. Coordinator Contacts</a></li>
+              <li><a href="#patrons" className="hover:text-white transition">09. Our Patrons</a></li>
+              <li><a href="#contact" className="hover:text-white transition">10. Contact Desk</a></li>
             </ul>
           </div>
 
           {/* Portals & Architecture */}
           <div className="md:col-span-4 space-y-3">
-            <h4 className="font-mono-tech text-xs text-white uppercase tracking-widest font-bold mb-3">
+            <h4 className="font-mono text-xs text-white uppercase tracking-widest font-bold mb-3">
               TEAM &amp; ORGANIZER PORTALS
             </h4>
-            <div className="space-y-2 text-xs font-mono-tech">
+            <div className="space-y-2 text-xs font-mono">
               <button
                 onClick={onOpenRegister}
                 className="w-full text-left px-3 py-2 rounded-xl bg-zinc-950 hover:bg-zinc-900 text-white transition flex items-center justify-between border border-white/15"
               >
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 text-white" />
-                  <span>Register Team (₹200 / Head)</span>
+                  <span>Register Team / Participant</span>
                 </div>
                 <span className="text-[10px] text-white font-bold">OPEN</span>
               </button>
@@ -125,7 +126,7 @@ export const Footer: React.FC<FooterProps> = ({
               >
                 <div className="flex items-center gap-2">
                   <Database className={`w-3.5 h-3.5 ${isSupabaseConfigured ? 'text-white' : 'text-zinc-500'}`} />
-                  <span>Supabase Database Status</span>
+                  <span>Database Status</span>
                 </div>
                 <span className="text-[10px] text-zinc-400">{isSupabaseConfigured ? 'Live' : 'Guide'}</span>
               </button>
@@ -134,9 +135,9 @@ export const Footer: React.FC<FooterProps> = ({
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-tech text-zinc-500">
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-400">
           <div>
-            © {new Date().getFullYear()} FROST Hacks. All rights reserved. National-Level Collegiate Hackathon.
+            © 2026 AMSFROST. Aalim Muhammed Salegh College of Engineering. All rights reserved.
           </div>
           <button
             onClick={scrollToTop}

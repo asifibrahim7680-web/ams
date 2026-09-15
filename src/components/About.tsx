@@ -2,144 +2,136 @@ import React from 'react';
 import { Zap, Cpu, CheckCircle, Sparkles, Layers, ShieldCheck } from 'lucide-react';
 
 export const About: React.FC = () => {
-  const gains = [
-    {
-      title: 'Mentorship from Industry Experts',
-      desc: 'Direct real-time architectural guidance, code reviews, and hardware debugging from senior engineers and startup mentors.',
-    },
-    {
-      title: 'Hands-on Hackathon Experience',
-      desc: 'Experience high-velocity rapid prototyping, collaborative sprint dynamics, git version control audit, and physical workbench testing.',
-    },
-    {
-      title: 'Certificate of Participation for All',
-      desc: 'Every verified participant with a completed project receives an official verified Certificate of Merit & Participation.',
-    },
-    {
-      title: 'Opportunity to Build Portfolio Projects',
-      desc: 'Ship an end-to-end working system from scratch to showcase on your GitHub, LinkedIn, and engineering portfolio.',
-    },
-  ];
-
-  const highlights = [
-    'Mentorship from industry experts',
-    'Hands-on hackathon experience',
-    'Certificate of participation for all',
-    'Opportunity to build portfolio projects',
-  ];
-
   return (
     <section id="about" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/20 text-white text-xs font-mono-tech uppercase mb-3 shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-zinc-900 border border-white/20 text-zinc-300 text-xs font-mono uppercase mb-3 shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-white" />
-          <span>ABOUT THE HACKATHON</span>
+          <span>01 / ABOUT</span>
         </div>
 
         <h2 className="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight uppercase">
-          WHAT IS <span className="text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">FROST HACKS?</span>
+          Three ways to compete. <span className="text-zinc-400">One platform to build.</span>
         </h2>
 
-        <p className="text-zinc-300 text-sm sm:text-base mt-3 leading-relaxed">
-          <strong className="text-white">FROST Hacks</strong> is an adrenaline-charged, national-level <strong className="text-white">one-day tech hackathon</strong> uniting collegiate software developers, embedded circuit designers, and interdisciplinary problem solvers to prototype transformative solutions within a dedicated 12-hour sprint.
+        <p className="text-zinc-300 text-sm sm:text-lg mt-4 leading-relaxed font-medium">
+          AMSFROST 2026 brings students together to compete in coding, software innovation, and hardware engineering at Aalim Muhammed Salegh College of Engineering, Chennai.
         </p>
-      </div>
 
-      {/* 4 Core Pillars: What, Why, Who, What You Gain */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        {/* Why Attend? */}
-        <div className="glass-panel rounded-2xl p-6 border border-white/15 shadow-sm hover:border-white/40 transition-all flex flex-col justify-between">
-          <div>
-            <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/15 text-white flex items-center justify-center mb-4 font-bold">
-              <Zap className="w-5 h-5" />
-            </div>
-            <h3 className="font-heading font-black text-xl text-white mb-2">
-              Why Attend?
-            </h3>
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Step away from theoretical coursework into intense hands-on engineering. Test your limits, network with top peer builders, pitch live before industry jury panels, and compete for ₹25,000 cash rewards and internship opportunities.
-            </p>
-          </div>
-          <div className="mt-4 pt-3 border-t border-white/10 font-mono-tech text-[11px] text-zinc-400 font-bold">
-            12 HOURS OF PURE CREATIVITY
-          </div>
-        </div>
-
-        {/* Who Can Participate? */}
-        <div className="glass-panel rounded-2xl p-6 border border-white/15 shadow-sm hover:border-white/40 transition-all flex flex-col justify-between">
-          <div>
-            <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/15 text-white flex items-center justify-center mb-4 font-bold">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <h3 className="font-heading font-black text-xl text-white mb-2">
-              Who Can Participate?
-            </h3>
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Undergraduate and postgraduate students from any recognized college or university. Teams of <strong className="text-white">2 to 5 members</strong> are welcomed across disciplines: Computer Science, Electronics, Robotics, Mechanical, Biotech, or Design.
-            </p>
-          </div>
-          <div className="mt-4 pt-3 border-t border-white/10 font-mono-tech text-[11px] text-zinc-400 font-bold">
-            TEAMS OF 2 – 5 STUDENTS
-          </div>
-        </div>
-
-        {/* What You Will Gain */}
-        <div className="glass-panel rounded-2xl p-6 border border-white/15 shadow-sm hover:border-white/40 transition-all flex flex-col justify-between">
-          <div>
-            <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/15 text-white flex items-center justify-center mb-4 font-bold">
-              <Cpu className="w-5 h-5" />
-            </div>
-            <h3 className="font-heading font-black text-xl text-white mb-2">
-              Dual &amp; Open Tracks
-            </h3>
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Choose from Software, Hardware, or Open Domain. Open Domain specifically welcomes both pure software and physical hardware (or hybrid systems), giving you total architectural freedom.
-            </p>
-          </div>
-          <div className="mt-4 pt-3 border-t border-white/10 font-mono-tech text-[11px] text-zinc-400 font-bold">
-            SOFTWARE + HARDWARE + OPEN
-          </div>
-        </div>
-      </div>
-
-      {/* Highlighted Gains Banner (4 Key Gains) */}
-      <div className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/30 bg-zinc-950/80 shadow-md">
-        <div className="text-center max-w-2xl mx-auto mb-6">
-          <span className="text-xs font-mono-tech font-bold text-zinc-400 uppercase tracking-widest">
-            TANGIBLE PARTICIPANT TAKEAWAYS
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-zinc-400">
+          <span className="px-3 py-1 rounded bg-zinc-900 border border-white/15 text-zinc-300">
+            01 OCTOBER 2026
           </span>
-          <h3 className="font-heading font-black text-2xl text-white mt-1">
-            What Participants Will Gain
-          </h3>
+          <span>•</span>
+          <span className="px-3 py-1 rounded bg-zinc-900 border border-white/15 text-zinc-300">
+            CHENNAI, TAMIL NADU
+          </span>
+          <span>•</span>
+          <span className="px-3 py-1 rounded bg-zinc-900 border border-white/15 text-zinc-300">
+            INTER-COLLEGE
+          </span>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {gains.map((g, idx) => (
-            <div key={idx} className="p-4 rounded-2xl bg-zinc-900/90 border border-white/15 shadow-sm flex flex-col justify-between">
-              <div>
-                <div className="w-7 h-7 rounded-lg bg-zinc-800 text-white flex items-center justify-center mb-2.5 font-bold text-xs border border-white/10">
-                  0{idx + 1}
-                </div>
-                <h4 className="font-heading font-bold text-sm text-white mb-1.5">
-                  {g.title}
-                </h4>
-                <p className="text-xs text-zinc-400 leading-relaxed">
-                  {g.desc}
-                </p>
-              </div>
+      {/* 3 Competition Pillars */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {/* Crack the Code */}
+        <div className="glass-panel rounded-2xl p-6 border border-white/15 shadow-sm hover:border-white/40 transition-all flex flex-col justify-between group">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-mono text-xl text-white font-black">{'{ }'}</span>
+              <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-zinc-900 border border-white/20 text-zinc-300">
+                01 · ₹100 / participant
+              </span>
             </div>
-          ))}
+            <h3 className="font-heading font-black text-xl text-white mb-1.5">
+              CRACK THE CODE
+            </h3>
+            <div className="text-xs font-mono text-zinc-400 mb-3 uppercase tracking-wider">
+              Coding &amp; Debugging • 1–2 Members
+            </div>
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+              A timed battle of logic, speed, and precision across three rounds: Code Sprint, Debugging Arena, and the Final Code Challenge.
+            </p>
+          </div>
+          <div className="mt-6 pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-zinc-400">
+            <span>Solo or Duo</span>
+            <a href="#events" className="text-white hover:underline">View challenge &rarr;</a>
+          </div>
         </div>
 
-        {/* Quick Checkmarks */}
-        <div className="mt-6 pt-5 border-t border-white/15 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs font-semibold text-zinc-300">
-          {highlights.map((h, i) => (
-            <span key={i} className="flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-white" />
-              <span>{h}</span>
-            </span>
-          ))}
+        {/* Hackathon */}
+        <div className="glass-panel rounded-2xl p-6 border border-white/30 bg-zinc-900/60 shadow-sm hover:border-white/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-mono text-xl text-white font-black">&gt;&gt;_</span>
+              <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-zinc-900 border border-white/20 text-zinc-300">
+                02 · ₹200 / participant
+              </span>
+            </div>
+            <h3 className="font-heading font-black text-xl text-white mb-1.5">
+              HACKATHON
+            </h3>
+            <div className="text-xs font-mono text-zinc-400 mb-3 uppercase tracking-wider">
+              Software &amp; Innovation • 2–5 Members
+            </div>
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+              Find a problem. Build the solution. A full-day build sprint across technology domains including AI/ML, Cybersecurity, IoT, and FinTech.
+            </p>
+          </div>
+          <div className="mt-6 pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-zinc-400">
+            <span>Teams of 2–5</span>
+            <a href="#events" className="text-white hover:underline">View challenge &rarr;</a>
+          </div>
+        </div>
+
+        {/* TechForge */}
+        <div className="glass-panel rounded-2xl p-6 border border-white/15 shadow-sm hover:border-white/40 transition-all flex flex-col justify-between group">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <span className="font-mono text-xl text-white font-black">◇▱</span>
+              <span className="font-mono text-xs px-2.5 py-1 rounded-full bg-zinc-900 border border-white/20 text-zinc-300">
+                03 · ₹200 / participant
+              </span>
+            </div>
+            <h3 className="font-heading font-black text-xl text-white mb-1.5">
+              TECHFORGE
+            </h3>
+            <div className="text-xs font-mono text-zinc-400 mb-3 uppercase tracking-wider">
+              Hardware &amp; Engineering • 2–4 Members
+            </div>
+            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+              Design. Build. Demonstrate. Turn ideas into working physical prototypes in a single day across Robotics, IoT, EV, and Automation.
+            </p>
+          </div>
+          <div className="mt-6 pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-zinc-400">
+            <span>Teams of 2–4</span>
+            <a href="#events" className="text-white hover:underline">View challenge &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      {/* College Footprint Banner */}
+      <div className="rounded-2xl p-6 sm:p-8 bg-zinc-950 border border-white/15 shadow-md flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="space-y-1 text-center sm:text-left">
+          <div className="text-xs font-mono text-zinc-400 uppercase tracking-widest">
+            Host Institution
+          </div>
+          <div className="text-lg sm:text-xl font-heading font-bold text-white">
+            Aalim Muhammed Salegh College of Engineering
+          </div>
+          <p className="text-xs text-zinc-400 max-w-xl">
+            Nizara Educational Campus, Muthapudupet, Avadi IAF, Chennai - 600055. Providing an inclusive stage for inter-college innovators across Tamil Nadu and beyond.
+          </p>
+        </div>
+        <div className="flex flex-col items-center sm:items-end shrink-0 gap-2">
+          <span className="px-3.5 py-1 rounded-full bg-white text-black font-mono text-xs font-bold uppercase tracking-wider">
+            Inter-College Event
+          </span>
+          <span className="text-xs font-mono text-zinc-400">
+            Student ID required at check-in
+          </span>
         </div>
       </div>
     </section>

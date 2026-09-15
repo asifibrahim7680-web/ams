@@ -19,13 +19,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
-    { label: 'Tracks', href: '#tracks' },
-    { label: 'Problems', href: '#problems' },
+    { label: 'Events', href: '#events' },
     { label: 'Timeline', href: '#timeline' },
     { label: 'Prizes', href: '#prizes' },
-    { label: 'Logistics', href: '#details' },
+    { label: 'Rules', href: '#rules' },
+    { label: 'Evaluation', href: '#evaluation' },
+    { label: 'Patrons', href: '#patrons' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
   ];
@@ -35,18 +35,18 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Top Brand & Accreditation Bar */}
       <div className="bg-[#050505] text-zinc-300 text-[11px] font-mono-tech py-1.5 px-3 sm:px-6 border-b border-zinc-800 flex items-center justify-between overflow-x-auto whitespace-nowrap">
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 text-white font-bold">
+          <span className="inline-flex items-center gap-1.5 text-white font-bold tracking-wider uppercase">
             <Sparkles className="w-3 h-3 text-white" />
-            NATIONAL-LEVEL MEGA TECH HACKATHON
+            INTER-COLLEGE TECHNICAL INNOVATION CHALLENGE
           </span>
           <span className="text-zinc-700 hidden sm:inline">|</span>
           <span className="text-zinc-400 hidden md:inline">
-            Autonomous Institution • NAAC 'A' Grade • NBA Accredited
+            Aalim Muhammed Salegh College of Engineering, Chennai
           </span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-zinc-400 font-medium hidden sm:inline">
-            12-Hour Non-Stop Innovation
+          <span className="text-zinc-300 font-medium hidden sm:inline">
+            01 OCTOBER 2026 • CHENNAI
           </span>
           <button
             onClick={onOpenSupabaseGuide}
@@ -69,13 +69,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
             <div className="hidden xl:flex items-center gap-1.5">
               <span className="px-2 py-0.5 rounded bg-zinc-900 border border-white/20 text-zinc-200 font-mono-tech font-bold text-[10px] tracking-wider uppercase">
-                SOFTWARE
+                CRACK THE CODE
               </span>
               <span className="px-2 py-0.5 rounded bg-zinc-900 border border-white/20 text-zinc-200 font-mono-tech font-bold text-[10px] tracking-wider uppercase">
-                HARDWARE
+                HACKATHON
               </span>
               <span className="px-2 py-0.5 rounded bg-white text-black font-mono-tech font-bold text-[10px] tracking-wider uppercase shadow-sm">
-                OPEN DOMAIN
+                TECHFORGE
               </span>
             </div>
           </div>
