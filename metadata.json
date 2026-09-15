@@ -1,0 +1,6 @@
+{
+  "name": "FROST Hacks | One Day Hackathon",
+  "description": "FROST Hacks is a one-day college hackathon focused on software, hardware and open-domain innovation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
