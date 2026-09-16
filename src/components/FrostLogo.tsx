@@ -46,7 +46,7 @@ export const FrostLogo: React.FC<FrostLogoProps> = ({
           <path d="M22 66 L18 74 L28 78" className="stroke-[#E4E4E7] stroke-[2.5] fill-none" />
           <path d="M78 34 L82 26 L72 22" className="stroke-[#E4E4E7] stroke-[2.5] fill-none" />
           {/* Center core emitter */}
-          <circle cx="50" cy="50" r="7" className="fill-white drop-shadow-[0_0_8px_#FFFFFF]" />
+          <circle cx="50" cy="50" r="7" className="fill-sky-400 drop-shadow-[0_0_10px_#38BDF8]" />
           <circle cx="50" cy="50" r="3.5" className="fill-black" />
         </svg>
       </div>
@@ -55,7 +55,7 @@ export const FrostLogo: React.FC<FrostLogoProps> = ({
         <div className="flex flex-col leading-tight">
           <div className="flex items-center text-lg md:text-xl font-black tracking-tight text-white">
             <span className="font-heading tracking-wider">AMSFROST</span>
-            <span className="text-zinc-400 font-mono text-sm ml-1.5 font-semibold">
+            <span className="text-sky-400 font-mono text-sm ml-1.5 font-bold drop-shadow-[0_0_10px_rgba(56,189,248,0.4)]">
               2026
             </span>
           </div>

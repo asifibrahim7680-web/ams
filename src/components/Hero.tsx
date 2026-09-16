@@ -60,9 +60,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-40 pb-16 px-3 sm:px-6 lg:px-8 overflow-hidden cyber-grid">
-      {/* React Bits Eclipse Background - Turbulent Spectral Corona */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-40 flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-24 sm:pt-32 pb-16 px-3 sm:px-6 lg:px-8 overflow-hidden cyber-grid">
+      {/* React Bits Eclipse Background - Turbulent Spectral Corona in Sky Blue */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-50 flex items-center justify-center overflow-hidden">
         <Eclipse
           speed={0.8}
           radius={0.34}
@@ -70,9 +70,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
           reach={0.85}
           turbulence={1.1}
           streaks={1.2}
-          brightness={1.4}
+          brightness={1.6}
           colorCycle={0.35}
-          colors={['#FFFFFF', '#E4E4E7', '#A1A1AA', '#52525B']}
+          colors={['#38BDF8', '#7DD3FC', '#0284C7', '#BAE6FD']}
           coreColor="#050505"
           backgroundColor="transparent"
           cursorInteraction={true}
@@ -81,7 +81,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
         />
       </div>
 
-      {/* Ambient Monochrome Glow Blobs */}
+      {/* Ambient Monochrome & Sky Blue Glow Blobs */}
       <div className="glow-blob-purple top-10 left-1/4"></div>
       <div className="glow-blob-blue bottom-10 right-1/4"></div>
 
@@ -96,44 +96,38 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
           </span>
         </div>
 
-        {/* Eyebrow badge */}
-        <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-white/20 text-zinc-200 font-mono-tech text-[10px] sm:text-xs tracking-widest uppercase mb-4 shadow-sm">
-          <Sparkles className="w-3.5 h-3.5 text-white" />
-          <span>INTER-COLLEGE TECHNICAL INNOVATION CHALLENGE</span>
-        </div>
-
-        {/* Main Display Title */}
+        {/* Main Display Title with Sky Blue Year */}
         <h1 className="font-heading font-black text-5xl xs:text-6xl sm:text-7xl md:text-8xl tracking-tight text-white uppercase drop-shadow-sm break-words max-w-full">
           <span>AMSFROST</span>{' '}
-          <span className="text-zinc-400 font-mono">2026</span>
+          <span className="text-sky-400 font-mono drop-shadow-[0_0_35px_rgba(56,189,248,0.6)]">2026</span>
         </h1>
 
         {/* Supporting Tagline */}
-        <div className="mt-3 flex items-center justify-center gap-3 text-sm sm:text-2xl md:text-3xl font-bold tracking-wider text-zinc-300 uppercase">
-          <span className="h-[2px] w-4 sm:w-12 bg-white/30 rounded"></span>
-          <span>Code. Build. Innovate.</span>
-          <span className="h-[2px] w-4 sm:w-12 bg-white/30 rounded"></span>
+        <div className="mt-3 flex items-center justify-center gap-3 text-sm sm:text-2xl md:text-3xl font-bold tracking-wider text-zinc-200 uppercase">
+          <span className="h-[2px] w-4 sm:w-12 bg-sky-400/80 rounded shadow-[0_0_8px_rgba(56,189,248,0.5)]"></span>
+          <span>Code. Build. <span className="text-sky-400">Innovate.</span></span>
+          <span className="h-[2px] w-4 sm:w-12 bg-sky-400/80 rounded shadow-[0_0_8px_rgba(56,189,248,0.5)]"></span>
         </div>
 
         {/* Date & Location Pill */}
-        <div className="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900 border border-white/20 text-zinc-300 font-mono-tech text-xs sm:text-sm font-semibold tracking-wider">
-          <Calendar className="w-4 h-4 text-white" />
+        <div className="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-sky-400/30 text-zinc-200 font-mono-tech text-xs sm:text-sm font-semibold tracking-wider shadow-[0_0_15px_rgba(56,189,248,0.15)]">
+          <Calendar className="w-4 h-4 text-sky-400" />
           <span>01 OCTOBER 2026 • CHENNAI</span>
         </div>
 
         {/* Competitions Badge Ribbon */}
         <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-          <span className="px-3.5 py-1 rounded-full bg-zinc-900 border border-white/20 text-zinc-200 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
-            <span className="text-white font-mono">{'{ }'}</span>
+          <span className="px-3.5 py-1 rounded-full bg-zinc-900/90 border border-sky-400/25 text-zinc-200 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 hover:border-sky-400/50 transition-colors">
+            <span className="text-sky-400 font-mono">{'{ }'}</span>
             01 · CRACK THE CODE (₹100)
           </span>
           <span className="text-zinc-600 hidden min-[400px]:inline">•</span>
-          <span className="px-3.5 py-1 rounded-full bg-zinc-900 border border-white/20 text-zinc-200 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5">
-            <span className="text-white font-mono">&gt;&gt;_</span>
+          <span className="px-3.5 py-1 rounded-full bg-zinc-900/90 border border-sky-400/25 text-zinc-200 text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 hover:border-sky-400/50 transition-colors">
+            <span className="text-sky-400 font-mono">&gt;&gt;_</span>
             02 · HACKATHON (₹200)
           </span>
           <span className="text-zinc-600 hidden min-[400px]:inline">•</span>
-          <span className="px-3.5 py-1 rounded-full bg-white text-black text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+          <span className="px-3.5 py-1 rounded-full bg-sky-400 text-black text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-[0_0_20px_rgba(56,189,248,0.4)]">
             <span className="font-mono">◇▱</span>
             03 · TECHFORGE (₹200)
           </span>
@@ -141,20 +135,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
 
         {/* 4 Stat Highlights Grid from Reference */}
         <div className="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-2xl">
-          <div className="bg-zinc-900/90 border border-white/15 rounded-2xl p-3.5 text-center shadow-sm">
+          <div className="bg-zinc-900/90 border border-white/15 hover:border-sky-400/40 rounded-2xl p-3.5 text-center shadow-sm transition-colors">
             <div className="font-heading font-black text-2xl sm:text-3xl text-white">3</div>
             <div className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider mt-0.5">Competitions</div>
           </div>
-          <div className="bg-zinc-900/90 border border-white/15 rounded-2xl p-3.5 text-center shadow-sm">
-            <div className="font-heading font-black text-2xl sm:text-3xl text-white">100%</div>
+          <div className="bg-zinc-900/90 border border-white/15 hover:border-sky-400/40 rounded-2xl p-3.5 text-center shadow-sm transition-colors">
+            <div className="font-heading font-black text-2xl sm:text-3xl text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.3)]">100%</div>
             <div className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider mt-0.5">Student Driven</div>
           </div>
-          <div className="bg-zinc-900/90 border border-white/15 rounded-2xl p-3.5 text-center shadow-sm">
+          <div className="bg-zinc-900/90 border border-white/15 hover:border-sky-400/40 rounded-2xl p-3.5 text-center shadow-sm transition-colors">
             <div className="font-heading font-black text-2xl sm:text-3xl text-white">01</div>
             <div className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider mt-0.5">Day</div>
           </div>
-          <div className="bg-zinc-900/90 border border-white/15 rounded-2xl p-3.5 text-center shadow-sm">
-            <div className="font-heading font-black text-2xl sm:text-3xl text-white">₹200</div>
+          <div className="bg-zinc-900/90 border border-white/15 hover:border-sky-400/40 rounded-2xl p-3.5 text-center shadow-sm transition-colors">
+            <div className="font-heading font-black text-2xl sm:text-3xl text-sky-400 drop-shadow-[0_0_10px_rgba(56,189,248,0.3)]">₹200</div>
             <div className="font-mono text-[11px] text-zinc-400 uppercase tracking-wider mt-0.5">Starting Fee</div>
           </div>
         </div>
@@ -168,8 +162,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
           <div className="flex items-center justify-center gap-2 sm:gap-4 my-2 max-w-full overflow-x-auto py-1">
             {countdownUnits.map((unit, idx) => (
               <div key={unit.label} className="flex items-center">
-                <div className="flex flex-col items-center bg-zinc-900/90 border border-white/15 backdrop-blur-md rounded-xl sm:rounded-2xl px-3 sm:px-6 py-2.5 sm:py-3.5 min-w-[65px] sm:min-w-[95px] shadow-md">
-                  <span className="font-mono-tech font-black text-2xl sm:text-4xl text-white tracking-tight">
+                <div className="flex flex-col items-center bg-zinc-900/90 border border-white/15 hover:border-sky-400/40 backdrop-blur-md rounded-xl sm:rounded-2xl px-3 sm:px-6 py-2.5 sm:py-3.5 min-w-[65px] sm:min-w-[95px] shadow-md transition-colors">
+                  <span className="font-mono-tech font-black text-2xl sm:text-4xl text-sky-400 tracking-tight drop-shadow-[0_0_12px_rgba(56,189,248,0.3)]">
                     {unit.value}
                   </span>
                   <span className="text-[9px] sm:text-[11px] font-bold tracking-widest text-zinc-400 uppercase mt-0.5">
@@ -190,14 +184,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRegister }) => {
         <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md">
           <button
             onClick={onOpenRegister}
-            className="w-full sm:w-auto flex-1 btn-neon-primary px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-xs sm:text-sm text-black flex items-center justify-center gap-2.5 uppercase tracking-wider shadow-xl"
+            className="w-full sm:w-auto flex-1 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-xs sm:text-sm text-black bg-sky-400 hover:bg-sky-300 flex items-center justify-center gap-2.5 uppercase tracking-wider shadow-[0_0_25px_rgba(56,189,248,0.4)] transition-all hover:scale-[1.02]"
           >
             <span>REGISTER NOW</span>
             <ArrowRight className="w-4 h-4" />
           </button>
           <a
             href="#events"
-            className="w-full sm:w-auto flex-1 btn-neon-outline px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl font-semibold text-xs sm:text-sm text-white flex items-center justify-center gap-2 transition"
+            className="w-full sm:w-auto flex-1 btn-neon-outline px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl font-semibold text-xs sm:text-sm text-white hover:border-sky-400/60 hover:text-sky-100 flex items-center justify-center gap-2 transition"
           >
             <span>EXPLORE EVENTS</span>
             <ChevronDown className="w-4 h-4" />
