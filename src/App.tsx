@@ -3,6 +3,7 @@ import { ParticleBackground } from './components/ParticleBackground';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
+import { GlassRevealShowcase } from './components/GlassRevealShowcase';
 import { Tracks } from './components/Tracks';
 import { WhyParticipate } from './components/WhyParticipate';
 import { ProblemStatements } from './components/ProblemStatements';
@@ -56,6 +57,7 @@ export default function App() {
       <main className="relative z-10">
         <Hero onOpenRegister={() => handleOpenRegister()} />
         <About />
+        <GlassRevealShowcase />
         <Tracks onSelectTrackForRegistration={(t) => handleOpenRegister(t)} />
         <WhyParticipate onOpenRegister={() => handleOpenRegister()} />
         <ProblemStatements
